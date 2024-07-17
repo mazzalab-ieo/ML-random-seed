@@ -1,7 +1,8 @@
 #### function svm for now only linear (so we can always use this one)
-svm_func<-function(seeds,data_list,torem) #samples,
+svm_func<-function(seeds,data_list,torem,case) #samples,
 {
   #torem: extra features tp remove a part Label and real features
+  # the default is svm with L2 regularization with hinge loss
   
   library(tidyverse)
   library(caret)
@@ -15,7 +16,8 @@ svm_func<-function(seeds,data_list,torem) #samples,
   auc_test<-numeric()
   ncoef<-numeric()
   
-  total_res<-data.frame("Seed"=seeds,"N.samples"=rep(samples,each=length(seeds)))
+  total_res<-data.frame("Seed"=seeds,"N.samples"=rep(samples,each=length(seeds)),
+                        "Dataset"=case)
   total_coef<-list()
   
   for (i in c(1:length(samples)))

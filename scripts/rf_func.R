@@ -1,5 +1,5 @@
 #### function rf for now only test number of features (so we can always use this one)
-rf_func<-function(seeds,data_list,torem)
+rf_func<-function(seeds,data_list,torem,case)
 {
   library(tidyverse)
   library(caret)
@@ -14,7 +14,8 @@ rf_func<-function(seeds,data_list,torem)
   auc_test<-numeric()
   ncoef<-numeric()
   
-  total_res<-data.frame("Seed"=seeds,"N.samples"=rep(samples,each=length(seeds)))
+  total_res<-data.frame("Seed"=seeds,"N.samples"=rep(samples,each=length(seeds)),
+                        "Dataset"=case)
   total_coef<-list()
   
   for (i in c(1:length(samples)))
